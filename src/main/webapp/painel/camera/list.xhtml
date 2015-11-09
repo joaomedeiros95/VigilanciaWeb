@@ -1,0 +1,38 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+                
+	<ui:define name="conteudo">
+		<div class="container">
+			<h:form>
+				<p:commandLink action="#{cameraMBean.preCadastrar()}" value="Cadastrar" />
+				<p:dataTable var="camera" value="#{cameraMBean.all}">
+						<p:column headerText="Descrição">
+							<h:outputText value="#{camera.descricao}" />
+						</p:column>
+						<p:column headerText="Ip">
+							<h:outputText value="#{camera.ip}" />
+						</p:column>
+						<p:column headerText="Ações">
+							<p:commandLink value="Editar" action="#{cameraMBean.editar()}">
+								<f:param name="id" value="${camera.id}"/>
+							</p:commandLink>
+							 | 
+							<p:commandLink value="Visualizar" action="#{cameraMBean.visualizar()}">
+								<f:param name="id" value="${camera.id}"/>
+							</p:commandLink>
+							 | 
+							<p:commandLink value="Remover" action="#{cameraMBean.remover()}">
+								<f:param name="id" value="${camera.id}"/>
+							</p:commandLink>
+						</p:column>
+					
+				</p:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+                
+</ui:composition>

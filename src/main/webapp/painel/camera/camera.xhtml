@@ -1,17 +1,17 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./WEB-INF/templates/template.xhtml"
+                template="../../WEB-INF/templates/template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
                 
-                
 	<ui:define name="conteudo">
 		<div class="container">
 			<h:form>
-				<ul>
-					<li><p:commandLink action="#{cameraMBean.goToList()}">Câmeras</p:commandLink></li>
-				</ul>
+				<h2>#{cameraMBean.viewCamera.descricao}</h2>
+				<img style="-webkit-user-select: none" width="1000px" height="600px" src="#{cameraMBean.viewCamera.ip}"></img>
+				<br />
+				<p:commandButton value="Voltar" action="#{cameraMBean.goToList()}" />
 			</h:form>
 		</div>
 	</ui:define>
