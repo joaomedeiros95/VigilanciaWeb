@@ -1,0 +1,31 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+                
+	<ui:define name="conteudo">
+		<div class="container">
+			<h:form>
+				<p:commandLink action="#{grupoMBean.preCadastrar()}" value="Cadastrar" />
+				<p:dataTable var="grupo" value="#{grupoMBean.all}">
+						<p:column headerText="Descrição">
+							<h:outputText value="#{grupo.descricao}" />
+						</p:column>
+						<p:column headerText="Ações">
+							<p:commandLink value="Editar" action="#{grupoMBean.editar()}">
+								<f:param name="id" value="${grupo.id}"/>
+							</p:commandLink>
+							 | 
+							<p:commandLink value="Remover" action="#{grupoMBean.remover()}">
+								<f:param name="id" value="${grupo.id}"/>
+							</p:commandLink>
+						</p:column>
+					
+				</p:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+                
+</ui:composition>
