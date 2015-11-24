@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
- * @author joao
+ * @author Danilo
  *
  */
 @Entity
