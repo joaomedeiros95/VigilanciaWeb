@@ -11,7 +11,7 @@ import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Grupo;
 
 /**
- * @author joao
+ * @author Danilo
  *
  */
 @ManagedBean
