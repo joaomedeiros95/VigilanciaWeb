@@ -3,6 +3,7 @@
  */
 package br.ufrn.vigilancia_web.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,7 +14,9 @@ import javax.persistence.Persistence;
  * @author joao
  *
  */
-public class GenericDao<T> implements IGenericDao<T> {
+public class GenericDao<T> implements IGenericDao<T>, Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	private EntityManagerFactory factory = Persistence.createEntityManagerFactory("vigilancia_web");
 	

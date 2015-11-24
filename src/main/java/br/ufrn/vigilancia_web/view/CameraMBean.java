@@ -3,12 +3,19 @@
  */
 package br.ufrn.vigilancia_web.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.springframework.ui.context.Theme;
+
 import br.ufrn.vigilancia_web.bo.CameraBO;
+import br.ufrn.vigilancia_web.bo.GrupoBO;
 import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Camera;
+import br.ufrn.vigilancia_web.model.Grupo;
 
 /**
  * @author joao
@@ -24,6 +31,7 @@ public class CameraMBean extends AbstractMBean<Camera> {
 	private static final String VIEW_CAMERA = "/painel/camera/camera.xhtml";
 	
 	private CameraBO bo;
+	private GrupoBO gBo;
 	
 	private Camera viewCamera;
 	
@@ -62,8 +70,12 @@ public class CameraMBean extends AbstractMBean<Camera> {
 		bo = new CameraBO();
 		bo.remover(id);
 		
-		return LISTAGEM;
+		return goToList();
 	}
+	
+	public List<Grupo> completeGrupo(String query) {
+        return gBo.findByDescricao(query);
+    }
 	
 	public String goToList() {
 		bo = new CameraBO();

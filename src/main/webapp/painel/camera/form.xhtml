@@ -15,6 +15,9 @@
 					<p:outputLabel value="Descrição:" />
 					<p:inputText value="#{cameraMBean.obj.descricao}" styleClass="form-control" />
 					
+					<p:outputLabel value="Grupo:" for="grupo" />
+        			<p:autoComplete id="grupo" dropdown="true" value="#{cameraMBean.obj.grupo}" completeMethod="#{autoCompleteView.completeText}" />
+					
 					<p:commandButton value="Enviar" styleClass="btn btn-default" action="#{cameraMBean.cadastrar()}"/>
 				</div>				
 			</h:form>

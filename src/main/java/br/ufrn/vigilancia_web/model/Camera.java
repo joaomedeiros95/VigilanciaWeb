@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,6 +32,10 @@ public class Camera implements Serializable {
 	private String ip;
 	
 	private String descricao;
+	
+	@ManyToOne
+	@JoinColumn(name="id_grupo")
+	private Grupo grupo;
 
 	public Integer getId() {
 		return id;
@@ -53,6 +59,14 @@ public class Camera implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
 	}
 	
 }
