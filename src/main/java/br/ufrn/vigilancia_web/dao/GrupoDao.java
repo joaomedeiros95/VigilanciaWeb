@@ -14,7 +14,7 @@ import br.ufrn.vigilancia_web.model.Status;
 import br.ufrn.vigilancia_web.model.StatusGrupo;
 
 /**
- * @author joao
+ * @author Danilo
  *
  */
 public class GrupoDao extends GenericDao<Grupo> {
