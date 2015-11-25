@@ -8,27 +8,12 @@
 	<ui:define name="conteudo">
 		<div class="container">
 			<h:form>
-				<p:commandLink action="#{grupoMBean.preCadastrar()}" value="Cadastrar" />
-				<p:dataTable var="grupo" value="#{grupoMBean.all}">
-						<p:column headerText="Descrição">
-							<h:outputText value="#{grupo.descricao}" />
-						</p:column>
-						<p:column headerText="Status">
-							<p:outputPanel rendered="#{not empty grupo.statusGrupo}">
-								<h:outputText value="#{grupo.statusGrupo.status.nome} (#{grupo.statusGrupo.ultimaAtualizacao})" />
-							</p:outputPanel>
-						</p:column>
-						<p:column headerText="Ações">
-							<p:commandLink value="Editar" action="#{grupoMBean.editar()}">
-								<f:param name="id" value="${grupo.id}"/>
-							</p:commandLink>
-							 | 
-							<p:commandLink value="Remover" action="#{grupoMBean.remover()}">
-								<f:param name="id" value="${grupo.id}"/>
-							</p:commandLink>
-						</p:column>
+				<div class="form-group">
+					<p:outputLabel value="Descrição:" />
+					<p:inputText value="#{grupoMBean.obj.descricao}" styleClass="form-control" />
 					
-				</p:dataTable>
+					<p:commandButton value="Enviar" styleClass="btn btn-default" action="#{grupoMBean.cadastrar()}"/>
+				</div>				
 			</h:form>
 		</div>
 	</ui:define>

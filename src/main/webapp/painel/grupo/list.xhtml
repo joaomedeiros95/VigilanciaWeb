@@ -13,7 +13,16 @@
 						<p:column headerText="Descrição">
 							<h:outputText value="#{grupo.descricao}" />
 						</p:column>
+						<p:column headerText="Status">
+							<p:outputPanel rendered="#{not empty grupo.statusGrupo}">
+								<h:outputText value="#{grupo.statusGrupo.status.nome} (#{grupo.statusGrupo.ultimaAtualizacao})" />
+							</p:outputPanel>
+						</p:column>
 						<p:column headerText="Ações">
+							<p:commandLink value="Atualizar Status" onclick="PF('alterarStatus').show();">
+								 <f:setPropertyActionListener target="#{grupoMBean.statusGrupo.grupo}" value="#{grupo}"/>
+							</p:commandLink>
+							|
 							<p:commandLink value="Editar" action="#{grupoMBean.editar()}">
 								<f:param name="id" value="${grupo.id}"/>
 							</p:commandLink>
@@ -25,6 +34,20 @@
 					
 				</p:dataTable>
 			</h:form>
+			
+			<h:form>
+				<p:dialog header="Alterar Status" widgetVar="alterarStatus" minHeight="40">
+			    	<p:outputLabel value="Status" />
+			    	<p:selectOneMenu id="tipo" value="#{grupoMBean.statusGrupo.status}">
+			            <f:selectItem itemLabel="Selecione..." itemValue="" />
+			            <f:selectItems value="#{grupoMBean.allStatus}" />
+			        </p:selectOneMenu>
+			        
+			        <br/>
+			        
+			        <p:commandButton value="Enviar" styleClass="btn btn-default" action="#{grupoMBean.setarStatus()}" oncomplete="PF('alterarStatus').hide();"/>
+				</p:dialog>
+	        </h:form>
 		</div>
 	</ui:define>
                 

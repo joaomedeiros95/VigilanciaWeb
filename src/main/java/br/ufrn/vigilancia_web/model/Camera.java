@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,6 +34,10 @@ public class Camera implements Serializable {
 	private String ip;
 	
 	private String descricao;
+	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name="tipo_camera")
+	private TipoCamera tipoCamera;
 	
 	@ManyToOne
 	@JoinColumn(name="id_grupo")
@@ -67,6 +73,14 @@ public class Camera implements Serializable {
 
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
+	}
+
+	public TipoCamera getTipoCamera() {
+		return tipoCamera;
+	}
+
+	public void setTipoCamera(TipoCamera tipoCamera) {
+		this.tipoCamera = tipoCamera;
 	}
 	
 }

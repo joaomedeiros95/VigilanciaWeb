@@ -3,19 +3,17 @@
  */
 package br.ufrn.vigilancia_web.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
-import org.springframework.ui.context.Theme;
 
 import br.ufrn.vigilancia_web.bo.CameraBO;
 import br.ufrn.vigilancia_web.bo.GrupoBO;
 import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Camera;
 import br.ufrn.vigilancia_web.model.Grupo;
+import br.ufrn.vigilancia_web.model.TipoCamera;
 
 /**
  * @author joao
@@ -73,14 +71,15 @@ public class CameraMBean extends AbstractMBean<Camera> {
 		return goToList();
 	}
 	
-	public List<Grupo> completeGrupo(String query) {
-        return gBo.findByDescricao(query);
-    }
-	
 	public String goToList() {
 		bo = new CameraBO();
 		all = bo.getAll();
 		return LISTAGEM;
+	}
+	
+	public List<Grupo> getAllGrupo() {
+		gBo = new GrupoBO();
+		return gBo.getAll();
 	}
 	
 	public String preCadastrar() {
@@ -94,6 +93,10 @@ public class CameraMBean extends AbstractMBean<Camera> {
 
 	public void setViewCamera(Camera viewCamera) {
 		this.viewCamera = viewCamera;
+	}
+	
+	public TipoCamera[] getTipoCameras() {
+		return TipoCamera.values();
 	}
 	
 }

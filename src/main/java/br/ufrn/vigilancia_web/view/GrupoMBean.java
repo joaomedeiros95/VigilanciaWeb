@@ -7,8 +7,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import br.ufrn.vigilancia_web.bo.GrupoBO;
+import br.ufrn.vigilancia_web.bo.StatusGrupoBO;
 import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Grupo;
+import br.ufrn.vigilancia_web.model.Status;
+import br.ufrn.vigilancia_web.model.StatusGrupo;
 
 /**
  * @author Danilo
@@ -24,6 +27,8 @@ public class GrupoMBean extends AbstractMBean<Grupo> {
 	private static final String CADASTRO = "/painel/grupo/form.xhtml";
 	
 	private GrupoBO bo;
+	private StatusGrupo statusGrupo;
+	private StatusGrupoBO sgBO;
 	
 	public String cadastrar() {
 		try {
@@ -55,8 +60,22 @@ public class GrupoMBean extends AbstractMBean<Grupo> {
 		return goToList();
 	}
 	
+	public String setarStatus() {
+		sgBO = new StatusGrupoBO();
+		
+		try {
+			sgBO.gravar(statusGrupo);
+		} catch (ValidationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return goToList();
+	}
+	
 	public String goToList() {
 		bo = new GrupoBO();
+		statusGrupo = new StatusGrupo();
 		all = bo.getAll();
 		return LISTAGEM;
 	}
@@ -65,5 +84,17 @@ public class GrupoMBean extends AbstractMBean<Grupo> {
 		obj = new Grupo();
 		return CADASTRO;
 	}
+	
+	public Status[] getAllStatus() {
+		return Status.values();
+	}
 
+	public StatusGrupo getStatusGrupo() {
+		return statusGrupo;
+	}
+
+	public void setStatusGrupo(StatusGrupo statusGrupo) {
+		this.statusGrupo = statusGrupo;
+	}
+	
 }

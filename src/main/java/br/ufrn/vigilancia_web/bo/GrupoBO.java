@@ -22,10 +22,6 @@ public class GrupoBO extends AbstractBO<Grupo> {
 		dao = new GrupoDao();
 	}
 	
-	public List<Grupo> findByDescricao(String descricao) {
-		return dao.findByDescricao(descricao);
-	}
-	
 	@Override
 	public List<Grupo> getAll() {
 		return dao.getAll();

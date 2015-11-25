@@ -22,28 +22,13 @@ public class GrupoDao extends GenericDao<Grupo> {
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("unchecked")
-	public List<Grupo> findByDescricao(String descricao) {
-		EntityManager em = getEntityManager();
-		
-		try {
-			return em.createQuery("from Grupo where descricao = :descricao")
-					.setParameter("descricao", descricao)
-					.getResultList();
-		} finally {
-			em.close();
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
 	public List<Grupo> getAll() {
 		EntityManager em = getEntityManager();
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(" select g.*, st.id_status_grupo, st.status, st.ultima_atualizacao ");
-		sql.append(" from grupo g ");
-		sql.append(" left join (select id_status_grupo, id_grupo, status, ultima_atualizacao ");
-		sql.append(" 					from status_grupo s order by s.ultima_atualizacao ");
-		sql.append("					desc limit 1) st on g.id_grupo = st.id_grupo ");
+		sql.append(" select g.*, (select status from status_grupo s where g.id_grupo = s.id_grupo order by s.ultima_atualizacao desc limit 1),  ");
+		sql.append(" (select ultima_atualizacao from status_grupo s where g.id_grupo = s.id_grupo order by s.ultima_atualizacao desc limit 1) ");
+		sql.append(" from grupo g  ");
 		
 		List<Object[]> objetos;
 		try {
@@ -62,9 +47,8 @@ public class GrupoDao extends GenericDao<Grupo> {
 			if(objeto[2] != null) {
 				grupo.setStatusGrupo(new StatusGrupo());
 				grupo.getStatusGrupo().setGrupo(grupo);
-				grupo.getStatusGrupo().setId((Integer) objeto[2]);
-				grupo.getStatusGrupo().setStatus(Status.valueOf((String) objeto[3]));
-				grupo.getStatusGrupo().setUltimaAtualizacao((Date) objeto[4]);
+				grupo.getStatusGrupo().setStatus(Status.valueOf((String) objeto[2]));
+				grupo.getStatusGrupo().setUltimaAtualizacao((Date) objeto[3]);
 			}
 			
 			retorno.add(grupo);

@@ -8,10 +8,19 @@
 	<ui:define name="conteudo">
 		<div class="container">
 			<h:form>
-				<h2>#{cameraMBean.viewCamera.descricao}</h2>
-				<img style="-webkit-user-select: none" width="1000px" height="600px" src="#{cameraMBean.viewCamera.ip}"></img>
-				<br />
-				<p:commandButton value="Voltar" action="#{cameraMBean.goToList()}" />
+				<p:outputPanel rendered="#{cameraMBean.viewCamera.tipoCamera.ordinal == 0}">
+					<h2>#{cameraMBean.viewCamera.descricao}</h2>
+					<iframe width="1000px" height="600px" src="#{cameraMBean.viewCamera.ip}"></iframe>
+					<br />
+					<p:commandButton value="Voltar" action="#{cameraMBean.goToList()}" />
+				</p:outputPanel>
+			
+				<p:outputPanel rendered="#{cameraMBean.viewCamera.tipoCamera.ordinal == 1}">
+					<h2>#{cameraMBean.viewCamera.descricao}</h2>
+					<img style="-webkit-user-select: none" width="1000px" height="600px" src="#{cameraMBean.viewCamera.ip}"></img>
+					<br />
+					<p:commandButton value="Voltar" action="#{cameraMBean.goToList()}" />
+				</p:outputPanel>
 			</h:form>
 		</div>
 	</ui:define>

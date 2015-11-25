@@ -33,7 +33,7 @@ public class StatusGrupo implements Serializable {
 	@Column(name="id_status_grupo")
 	private Integer id;
 	
-	@Column(name="ultima_atualizacao", insertable=false)
+	@Column(name="ultima_atualizacao")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ultimaAtualizacao = new Date();
 	

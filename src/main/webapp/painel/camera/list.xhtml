@@ -16,6 +16,9 @@
 						<p:column headerText="Ip">
 							<h:outputText value="#{camera.ip}" />
 						</p:column>
+						<p:column headerText="Tipo">
+							<h:outputText value="#{camera.tipoCamera}" />
+						</p:column>
 						<p:column headerText="Ações">
 							<p:commandLink value="Editar" action="#{cameraMBean.editar()}">
 								<f:param name="id" value="${camera.id}"/>

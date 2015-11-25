@@ -61,4 +61,9 @@ public class Grupo implements Serializable {
 		this.statusGrupo = statusGrupo;
 	}
 	
+	@Override
+	public String toString() {
+		return this.descricao;
+	}
+	
 }
