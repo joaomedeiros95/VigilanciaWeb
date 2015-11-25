@@ -1,0 +1,50 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+                
+	<ui:define name="conteudo">
+		<div class="container">
+			<h:form>
+				<p:dataTable var="casa" value="#{casaMBean.all}">
+						<p:column headerText="Descrição">
+							<h:outputText value="#{casa.descricao}" />
+						</p:column>
+						<p:column headerText="Endereço">
+							<h:outputText value="#{casa.endereco}" />
+						</p:column>
+						<p:column headerText="Grupo">
+							<h:outputText value="#{casa.grupo.descricao}" />
+						</p:column>
+						<p:column headerText="Fechada">
+							<h:outputText value="#{casa.fechada}" />
+						</p:column>
+						<p:column headerText="Ações">
+							<p:commandLink value="Abrir/Fechar Casa" action="#{casaMBean.abrirFecharCasa()}">
+								<f:param name="id" value="${casa.id}"/>
+							</p:commandLink>
+							|
+							<p:commandLink value="Adicionar Mensagem" onclick="PF('adicionarMensagem').show();">
+								 <f:setPropertyActionListener target="#{casaMBean.mensagemCasa.casa}" value="#{casa}"/>
+							</p:commandLink>
+						</p:column>
+					
+				</p:dataTable>
+			</h:form>
+			
+			<h:form>
+				<p:dialog header="Alterar Status" widgetVar="adicionarMensagem" minHeight="40">
+			    	<p:outputLabel value="Mensagem" />
+			    	<p:inputText value="#{casaMBean.mensagemCasa.mensagem}" styleClass="form-control" />
+			        
+			        <br/>
+			        
+			        <p:commandButton value="Enviar" styleClass="btn btn-default" action="#{casaMBean.escreverMensagemCasa()}" oncomplete="PF('adicionarMensagem').hide();"/>
+				</p:dialog>
+	        </h:form>
+		</div>
+	</ui:define>
+                
+</ui:composition>
