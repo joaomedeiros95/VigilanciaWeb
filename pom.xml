@@ -106,6 +106,14 @@
 			<artifactId>primefaces</artifactId>
 			<version>5.2</version>
 		</dependency>
+		
+		<!-- Bootsfaces dependecy -->
+		<dependency>
+			<groupId>net.bootsfaces</groupId>
+			<artifactId>bootsfaces</artifactId>
+			<version>0.7.0</version>
+		</dependency>
+		
 
 		<!-- Hibernate dependencies -->
 		<dependency>
