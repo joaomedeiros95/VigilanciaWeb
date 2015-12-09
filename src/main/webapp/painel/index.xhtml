@@ -8,13 +8,13 @@
                 
                 
 	<ui:define name="conteudo">
-		<b:jumbotron>
-			<h1>Proteja sua rua</h1>
-			<p>Com o Vigilância Comunitária Web será muito mais fácil proteger sua rua/bairro.</p>
-			<p>
-				<a class="btn btn-primary btn-lg">Cadastre-se</a>
-			</p>
-		</b:jumbotron>
+		<h:form>
+			<ul>
+				<li><p:commandLink action="#{cameraMBean.goToList()}">Câmeras</p:commandLink></li>
+				<li><p:commandLink action="#{grupoMBean.goToList()}">Grupos</p:commandLink></li>
+				<li><p:commandLink action="#{casaMBean.goToList()}">Casas</p:commandLink></li>
+			</ul>
+		</h:form>
 	</ui:define>
                 
 </ui:composition>
