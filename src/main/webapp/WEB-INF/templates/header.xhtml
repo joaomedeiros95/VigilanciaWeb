@@ -4,15 +4,16 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     
 	<div id="header">
-
-		<b:navBar brand="Vigilância Comunitária Web" brandHref="#" inverse="true">
-			<b:navbarLinks>
-				<b:navLink value="Home" href="#"></b:navLink>
-				<b:navLink value="Login" href="#"></b:navLink>
-				<b:navLink value="Cadastrar" href="#"></b:navLink>
-				<b:navLink value="Sair" href="#"></b:navLink>
-			</b:navbarLinks>
-		</b:navBar>
+		<h:form>
+			<b:navBar brand="Vigilância Comunitária Web" brandHref="#" inverse="true">
+				<b:navbarLinks>
+					<b:navCommandLink value="Home" action="#"></b:navCommandLink>
+					<b:navCommandLink value="Login" href="#"></b:navCommandLink>
+					<b:navCommandLink value="Cadastrar" action="#{usuarioMBean.goToCadastro()}"></b:navCommandLink>
+					<b:navCommandLink value="Sair" href="#"></b:navCommandLink>
+				</b:navbarLinks>
+			</b:navBar>
+		</h:form>
 	</div>
     
 </ui:composition>
