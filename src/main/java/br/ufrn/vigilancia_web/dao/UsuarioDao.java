@@ -37,5 +37,17 @@ public class UsuarioDao extends GenericDao<Usuario> {
 			return objetos.get(0);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Usuario checkLogin(Usuario usuario) {
+		EntityManager entityManager = getEntityManager();
+		List<Usuario> users = entityManager.createQuery("FROM Usuario WHERE email = :email AND senha = :senha")
+							.setParameter("email", usuario.getEmail())
+							.setParameter("senha", usuario.getSenha())
+							.getResultList();
+		entityManager.close();
+		return users.size() > 0 ? users.get(0) : null;
+	}
+
 
 }

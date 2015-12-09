@@ -109,6 +109,14 @@ public class AbstractMBean<T> implements Serializable {
 		return FacesContext.getCurrentInstance();
 	}
 	
+	public void addSessionAttribute(String key, Object value) {
+		getFacesContext().getExternalContext().getSessionMap().put(key, value);
+	}
+	
+	public void invalidateSession() {
+		getFacesContext().getExternalContext().invalidateSession();
+	}
+	
 	public void tratarExcecao(ValidationException e){
 		e.printStackTrace();
 		

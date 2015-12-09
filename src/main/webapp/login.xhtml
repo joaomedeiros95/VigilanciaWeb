@@ -10,9 +10,6 @@
 	<ui:define name="conteudo">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
-		        <h:outputText value="Nome:"/>
-		        <b:inputText value="#{usuarioMBean.obj.nome}" />
-		        
 		        <h:outputText value="Email:"/>
 		        <b:inputText value="#{usuarioMBean.obj.email}">
 		            <f:facet name="prepend">
@@ -20,10 +17,10 @@
 		            </f:facet>
 		        </b:inputText>
 		        
-		        <h:outputText value="Senha:"/>
+		        <h:outputText value="Email:"/>
 		        <b:inputSecret value="#{usuarioMBean.obj.senha}" />
 		        
-		        <b:commandButton action="#{usuarioMBean.cadastrar()}" value="Cadastrar" look="success" /> 
+		        <b:commandButton action="#{usuarioMBean.login()}" value="Login" look="success" /> 
 		    </h:panelGrid>
 		</h:form>
 	</ui:define>

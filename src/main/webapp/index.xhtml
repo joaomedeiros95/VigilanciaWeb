@@ -12,7 +12,10 @@
 			<h1>Proteja sua rua</h1>
 			<p>Com o Vigilância Comunitária Web será muito mais fácil proteger sua rua/bairro.</p>
 			<p>
-				<a class="btn btn-primary btn-lg">Cadastre-se</a>
+				<h:form>
+					<b:commandButton action="#{usuarioMBean.goToCadastro()}" 
+						value="Cadastre-se" look="success" />
+				</h:form>
 			</p>
 		</b:jumbotron>
 	</ui:define>

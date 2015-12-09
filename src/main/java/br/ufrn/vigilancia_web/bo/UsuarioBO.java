@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufrn.vigilancia_web.dao.UsuarioDao;
+import br.ufrn.vigilancia_web.exception.LoginException;
 import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Usuario;
 import br.ufrn.vigilancia_web.utils.Mensagem;
@@ -29,6 +30,15 @@ public class UsuarioBO extends AbstractBO<Usuario> {
 	
 	public Usuario getUsuarioByEmail(String email) {
 		return dao.findByEmail(email);
+	}
+	
+	public void checkLogin(Usuario usuario) throws LoginException {
+		Usuario user = dao.checkLogin(usuario);
+		List<Mensagem> mensagens = new ArrayList<>();
+		if(user == null) {
+			mensagens.add(new Mensagem("Email/Senha errado"));
+			throw new LoginException(new Mensagens(mensagens));
+		}
 	}
 
 	@Override
