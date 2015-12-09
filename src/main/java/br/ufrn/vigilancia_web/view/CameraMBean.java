@@ -14,6 +14,7 @@ import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Camera;
 import br.ufrn.vigilancia_web.model.Grupo;
 import br.ufrn.vigilancia_web.model.TipoCamera;
+import br.ufrn.vigilancia_web.utils.Mensagens;
 
 /**
  * @author joao
@@ -42,8 +43,13 @@ public class CameraMBean extends AbstractMBean<Camera> {
 				bo.update(obj);
 			}
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			tratarExcecao(e);
+			return null;
 		}
+		
+		addMensagem(Mensagens.MENSAGEM_SUCESSO, Mensagens.CADASTRO_PADRAO);
+		showMessages();
+		
 		return goToList();
 	}
 	

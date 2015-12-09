@@ -11,6 +11,7 @@ import br.ufrn.vigilancia_web.bo.MensagemCasaBO;
 import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Casa;
 import br.ufrn.vigilancia_web.model.MensagemCasa;
+import br.ufrn.vigilancia_web.utils.Mensagens;
 
 /**
  * @author joao
@@ -44,9 +45,12 @@ public class CasaMBean extends AbstractMBean<Casa> {
 		try {
 			bo.update(casa);
 		} catch (ValidationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tratarExcecao(e);
+			return null;
 		}
+		
+		addMensagem(Mensagens.MENSAGEM_SUCESSO, Mensagens.CADASTRO_PADRAO);
+		showMessages();
 		
 		return goToList();
 	}
@@ -57,9 +61,12 @@ public class CasaMBean extends AbstractMBean<Casa> {
 		try {
 			mcBO.gravar(mensagemCasa);
 		} catch (ValidationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tratarExcecao(e);
+			return null;
 		}
+		
+		addMensagem(Mensagens.MENSAGEM_SUCESSO, Mensagens.CADASTRO_PADRAO);
+		showMessages();
 		
 		return goToList();
 	}

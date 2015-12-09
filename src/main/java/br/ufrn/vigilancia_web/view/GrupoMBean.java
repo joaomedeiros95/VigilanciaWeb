@@ -12,6 +12,7 @@ import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Grupo;
 import br.ufrn.vigilancia_web.model.Status;
 import br.ufrn.vigilancia_web.model.StatusGrupo;
+import br.ufrn.vigilancia_web.utils.Mensagens;
 
 /**
  * @author Danilo
@@ -39,8 +40,13 @@ public class GrupoMBean extends AbstractMBean<Grupo> {
 				bo.update(obj);
 			}
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			tratarExcecao(e);
+			return null;
 		}
+		
+		addMensagem(Mensagens.MENSAGEM_SUCESSO, Mensagens.CADASTRO_PADRAO);
+		showMessages();
+		
 		return goToList();
 	}
 	
@@ -66,9 +72,12 @@ public class GrupoMBean extends AbstractMBean<Grupo> {
 		try {
 			sgBO.gravar(statusGrupo);
 		} catch (ValidationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tratarExcecao(e);
+			return null;
 		}
+		
+		addMensagem(Mensagens.MENSAGEM_SUCESSO, Mensagens.CADASTRO_PADRAO);
+		showMessages();
 		
 		return goToList();
 	}

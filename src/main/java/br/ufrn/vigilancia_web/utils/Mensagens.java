@@ -19,6 +19,7 @@ public class Mensagens implements Serializable {
 	public static final int MENSAGEM_AVISO = 2;
 	public static final int MENSAGEM_SUCESSO = 3;
 	public static final String MENSAGEM_PADRAO = "Ocorreu um Comportamento Inesperado ao realizar sua operação, entre em contato com o suporte!";
+	public static final String CADASTRO_PADRAO = "Cadastrado com Sucesso!";
 	
 	private List<Mensagem> mensagens;
 	
