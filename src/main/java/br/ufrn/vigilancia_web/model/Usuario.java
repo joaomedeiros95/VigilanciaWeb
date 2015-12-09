@@ -16,14 +16,14 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(schema="public", name="casa")
+@Table(schema="public", name="usuario")
 public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue
-	@Column(name="id_casa")
+	@Column(name="id_usuario")
 	private Integer id;
 	
 	private String email;

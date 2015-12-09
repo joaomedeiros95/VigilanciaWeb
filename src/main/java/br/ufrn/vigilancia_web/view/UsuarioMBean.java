@@ -30,17 +30,12 @@ public class UsuarioMBean extends AbstractMBean<Usuario> {
 		try {
 			bo.gravar(obj);
 		} catch (ValidationException e) {
-			e.printStackTrace();
-			
-			if(e.getMensagens() != null) {
-				addMensagens(e.getMensagens());
-			} else {
-				addMensagem(Mensagens.MENSAGEM_ERRO, e.getMessage());
-			}
-			
-			showMessages();
+			tratarExcecao(e);
 			return null;
 		}
+		
+		addMensagem(Mensagens.MENSAGEM_SUCESSO, "Cadastro realizado com sucesso!");
+		showMessages();
 		
 		return irParaoInicio();
 	}

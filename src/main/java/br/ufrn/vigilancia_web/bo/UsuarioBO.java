@@ -6,6 +6,7 @@ package br.ufrn.vigilancia_web.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufrn.vigilancia_web.dao.UsuarioDao;
 import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.model.Usuario;
 import br.ufrn.vigilancia_web.utils.Mensagem;
@@ -19,6 +20,16 @@ import br.ufrn.vigilancia_web.utils.Mensagens;
 public class UsuarioBO extends AbstractBO<Usuario> {
 
 	private static final long serialVersionUID = 1L;
+	
+	private UsuarioDao dao;
+	
+	public UsuarioBO() {
+		dao = new UsuarioDao();
+	}
+	
+	public Usuario getUsuarioByEmail(String email) {
+		return dao.findByEmail(email);
+	}
 
 	@Override
 	void validarObjeto() throws ValidationException {
@@ -26,6 +37,8 @@ public class UsuarioBO extends AbstractBO<Usuario> {
 		
 		if(objeto.getEmail() == null || objeto.getEmail() == "") {
 			mensagens.add(new MensagemErro("Email é obrigatório!"));
+		} else if(getUsuarioByEmail(objeto.getEmail()) == null) {
+			mensagens.add(new MensagemErro("Email já cadastrado"));
 		}
 		
 		if(objeto.getNome() == null || objeto.getNome() == "") {

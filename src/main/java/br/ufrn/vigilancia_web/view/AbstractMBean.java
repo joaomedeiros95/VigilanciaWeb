@@ -11,6 +11,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import br.ufrn.vigilancia_web.exception.ValidationException;
 import br.ufrn.vigilancia_web.utils.Mensagem;
 import br.ufrn.vigilancia_web.utils.MensagemAviso;
 import br.ufrn.vigilancia_web.utils.MensagemErro;
@@ -106,6 +107,18 @@ public class AbstractMBean<T> implements Serializable {
 	
 	public FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
+	}
+	
+	public void tratarExcecao(ValidationException e){
+		e.printStackTrace();
+		
+		if(e.getMensagens() != null) {
+			addMensagens(e.getMensagens());
+		} else {
+			addMensagem(Mensagens.MENSAGEM_ERRO, e.getMessage());
+		}
+		
+		showMessages();
 	}
 	
 }

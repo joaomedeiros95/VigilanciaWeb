@@ -11,4 +11,6 @@ import br.ufrn.vigilancia_web.model.Grupo;
  */
 public class VigiarGrupoMBean extends AbstractMBean<Grupo> {
 
+	private static final long serialVersionUID = 1L;
+
 }
