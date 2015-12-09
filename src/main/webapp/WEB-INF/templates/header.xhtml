@@ -1,9 +1,18 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     
 	<div id="header">
-		<center><h1>Vigilância Comunitária Web</h1></center>
+
+		<b:navBar brand="Vigilância Comunitária Web" brandHref="#" inverse="true">
+			<b:navbarLinks>
+				<b:navLink value="Home" href="#"></b:navLink>
+				<b:navLink value="Login" href="#"></b:navLink>
+				<b:navLink value="Cadastrar" href="#"></b:navLink>
+				<b:navLink value="Sair" href="#"></b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
 	</div>
     
 </ui:composition>
