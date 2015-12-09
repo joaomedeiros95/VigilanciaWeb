@@ -9,7 +9,7 @@
 			<b:navBar brand="Vigilância Comunitária Web" brandHref="#" inverse="true">
 				<b:navbarLinks>
 					<b:navCommandLink value="Home" action="#{usuarioMBean.irParaoInicio()}"></b:navCommandLink>
-					<b:navCommandLink value="Sair" href="#" rendered="#{usuarioMBean.logado}"></b:navCommandLink>
+					<b:navCommandLink value="Sair" href="#" action="#{usuarioMBean.sair()}" rendered="#{usuarioMBean.logado}"></b:navCommandLink>
 					<b:navCommandLink value="Login" action="#{usuarioMBean.goToLogin()}" rendered="#{not usuarioMBean.logado}"></b:navCommandLink>
 					<b:navCommandLink value="Cadastrar" action="#{usuarioMBean.goToCadastro()}" rendered="#{not usuarioMBean.logado}"></b:navCommandLink>
 				</b:navbarLinks>

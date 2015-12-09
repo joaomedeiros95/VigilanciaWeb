@@ -36,7 +36,7 @@ public class UsuarioBO extends AbstractBO<Usuario> {
 		Usuario user = dao.checkLogin(usuario);
 		List<Mensagem> mensagens = new ArrayList<>();
 		if(user == null) {
-			mensagens.add(new Mensagem("Email/Senha errado"));
+			mensagens.add(new MensagemErro("Email/Senha errado"));
 			throw new LoginException(new Mensagens(mensagens));
 		}
 	}
@@ -47,7 +47,7 @@ public class UsuarioBO extends AbstractBO<Usuario> {
 		
 		if(objeto.getEmail() == null || objeto.getEmail() == "") {
 			mensagens.add(new MensagemErro("Email é obrigatório!"));
-		} else if(getUsuarioByEmail(objeto.getEmail()) == null) {
+		} else if(getUsuarioByEmail(objeto.getEmail()) != null) {
 			mensagens.add(new MensagemErro("Email já cadastrado"));
 		}
 		
